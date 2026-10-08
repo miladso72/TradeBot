@@ -1,0 +1,50 @@
+name: Build Android APK
+
+# بیلد کاملاً ابری: نیازی به اندروید استودیو، JDK یا SDK روی سیستم شما نیست.
+# خروجی: فایل APK در بخش Artifacts همین اجرا.
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        # v5 روی Node.js 24 اجرا می‌شود و هشدار deprecation مربوط به Node.js 20 را برطرف می‌کند
+        uses: actions/checkout@v5
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Unit tests (parser / formatter / action plan)
+        run: ./gradlew testDebugUnitTest --no-daemon --console=plain
+
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --no-daemon --console=plain
+
+      - name: Show APK path
+        run: ls -lh app/build/outputs/apk/debug/
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: BitunixDemoBot-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-report
+          path: app/build/reports/tests/testDebugUnitTest/
+          if-no-files-found: ignore

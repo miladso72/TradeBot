@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bitunix Demo Bot</string>
+    <string name="accessibility_label">Bitunix Demo Auto-Trader</string>
+    <string name="accessibility_description">Reads signals from the LBank bot server and automatically opens trades inside the Bitunix demo app by simulating taps. It only acts on the Bitunix app.</string>
+</resources>

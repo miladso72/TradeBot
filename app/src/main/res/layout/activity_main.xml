@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="14dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bitunix Demo Bot"
+            android:textColor="@color/accent"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="خواندن مستقیم کانال تلگرام + اجرای خودکار روی اپ دموی بیت‌یونیکس"
+            android:textColor="@color/text_dim"
+            android:textSize="12sp" />
+
+        <!-- status card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@color/card"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/tvTgStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="کانال تلگرام: قطع"
+                android:textColor="@color/danger"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvConnStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="پل کامپیوتر: قطع"
+                android:textColor="@color/text_dim" />
+
+            <TextView
+                android:id="@+id/tvA11yStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="سرویس دسترسی‌پذیری: خاموش"
+                android:textColor="@color/danger" />
+
+            <TextView
+                android:id="@+id/tvSignalCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="سیگنال دریافت‌شده: 0 | اجرا شده: 0"
+                android:textColor="@color/text_dim"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvLastSignal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="آخرین سیگنال: —"
+                android:textColor="@color/text_dim"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- source -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="منبع سیگنال"
+            android:textColor="@color/text"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spSource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etTgToken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="توکن ربات تلگرام (admin کانال)"
+            android:inputType="text"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text_dim"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/etTgChannel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="کانال سیگنال (@TraderProMeBo)"
+            android:inputType="text"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text_dim"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/etServer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="آدرس پل کامپیوتر (ws://192.168.1.10:8770/ws)"
+            android:inputType="textUri"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text_dim"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/etToken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="توکن پل (اختیاری)"
+            android:inputType="text"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text_dim"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/etTargetPackage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="پکیج اپ بیت‌یونیکس"
+            android:inputType="text"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text_dim"
+            android:textSize="12sp" />
+
+        <!-- order settings -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="تنظیمات سفارش"
+            android:textColor="@color/text"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etMargin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="مارجین ($)"
+                android:inputType="numberDecimal"
+                android:textColor="@color/text"
+                android:textColorHint="@color/text_dim"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etLeverage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="اهرم"
+                android:inputType="number"
+                android:textColor="@color/text"
+                android:textColorHint="@color/text_dim"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etOrderType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="نوع (limit)"
+                android:inputType="text"
+                android:textColor="@color/text"
+                android:textColorHint="@color/text_dim"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etMinScore"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="حداقل نمره (9)"
+                android:inputType="number"
+                android:textColor="@color/text"
+                android:textColorHint="@color/text_dim"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etCooldown"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="کول‌داون (ثانیه)"
+                android:inputType="number"
+                android:textColor="@color/text"
+                android:textColorHint="@color/text_dim"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/swIsolated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="مارجین ایزوله (Isolated)"
+            android:textColor="@color/text" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/swSetTpSl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ست کردن حد سود و حد ضرر"
+            android:textColor="@color/text" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/swEnabled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="اجرای خودکار معامله فعال باشد"
+            android:textColor="@color/text" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/swDryRun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="حالت آزمایشی (فقط شبیه‌سازی، بدون کلیک واقعی)"
+            android:textColor="@color/text" />
+
+        <!-- buttons -->
+        <Button
+            android:id="@+id/btnA11y"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="باز کردن تنظیمات دسترسی‌پذیری" />
+
+        <Button
+            android:id="@+id/btnDump"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ذخیره‌ی ساختار صفحه‌ی فعلی (برای کالیبراسیون)" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="شروع شنود" />
+
+            <Button
+                android:id="@+id/btnStop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="قطع" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnPasteTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="چسباندن پیام کانال و اجرای آزمایشی" />
+
+        <Button
+            android:id="@+id/btnTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ارسال سیگنال تستِ محلی (بدون سرور)" />
+
+        <Button
+            android:id="@+id/btnPlan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="نمایش/ذخیره‌ی دستور معاملات (action plan)" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="لاگ"
+            android:textColor="@color/text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:minLines="6"
+            android:padding="8dp"
+            android:textColor="@color/text_dim"
+            android:textIsSelectable="true"
+            android:textSize="11sp" />
+
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="پاک‌کردن لاگ" />
+    </LinearLayout>
+</ScrollView>
